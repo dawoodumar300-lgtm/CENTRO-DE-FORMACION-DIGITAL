@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Formación Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --azul: #0f2d52;
+      --azul-medio: #1a4a82;
+      --azul-claro: #2563a8;
+      --acento: #f59e0b;
+      --acento-suave: #fef3c7;
+      --blanco: #ffffff;
+      --gris-claro: #f4f6f9;
+      --gris-texto: #64748b;
+      --texto: #1e293b;
+      --borde: #e2e8f0;
+      --sombra: 0 4px 24px rgba(15,45,82,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Sora', sans-serif;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--azul);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--acento);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--azul);
+    }
+
+    .logo-text {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--blanco);
+      line-height: 1.2;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.78);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--acento);
+      transition: width 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--blanco); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--acento);
+      color: var(--azul) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background 0.2s, transform 0.1s !important;
+    }
+
+    .nav-cta:hover { background: #d97706 !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 60%, #1e5ba8 100%);
+      padding: 5rem 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(245,158,11,0.08);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -60px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: var(--acento);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      font-family: 'Sora', sans-serif;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--blanco);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 span {
+      color: var(--acento);
+    }
+
+    .hero-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: 16px;
+      max-width: 540px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--acento);
+      color: var(--azul);
+      padding: 12px 26px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .btn-primary:hover { background: #d97706; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: var(--blanco);
+      padding: 12px 26px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+
+    .stat-item { text-align: left; }
+    .stat-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--acento);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECCIONES ── */
+    section { padding: 4rem 2.5rem; }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--azul-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Sora', sans-serif;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      color: var(--azul);
+      line-height: 1.25;
+    }
+
+    .section-desc {
+      color: var(--gris-texto);
+      font-size: 15px;
+      max-width: 500px;
+      margin-top: 0.5rem;
+    }
+
+    /* ── CURSOS ── */
+    #cursos { background: var(--gris-claro); }
+
+    .filtros {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .filtro-btn {
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: 1.5px solid var(--borde);
+      background: var(--blanco);
+      color: var(--gris-texto);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .filtro-btn.activo,
+    .filtro-btn:hover {
+      background: var(--azul);
+      color: var(--blanco);
+      border-color: var(--azul);
+    }
+
+    .cursos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 16px;
+    }
+
+    .curso-card {
+      background: var(--blanco);
+      border-radius: 14px;
+      border: 1px solid var(--borde);
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .curso-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sombra);
+    }
+
+    .curso-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 20px;
+    }
+
+    .icon-blue { background: #dbeafe; }
+    .icon-green { background: #dcfce7; }
+    .icon-amber { background: #fef3c7; }
+    .icon-purple { background: #ede9fe; }
+
+    .curso-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--azul);
+      margin-bottom: 0.4rem;
+      line-height: 1.35;
+    }
+
+    .curso-card p {
+      font-size: 13px;
+      color: var(--gris-texto);
+      margin-bottom: 1rem;
+    }
+
+    .curso-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .tag-m { background: #dbeafe; color: #1e40af; }
+    .tag-t { background: #dcfce7; color: #166534; }
+    .tag-n { background: #fef3c7; color: #92400e; }
+    .tag-dur { background: #f1f5f9; color: #475569; }
+
+    /* ── HORARIOS ── */
+    #horarios { background: var(--blanco); }
+
+    .tabla-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--borde);
+      box-shadow: var(--sombra);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr {
+      background: var(--azul);
+    }
+
+    thead th {
+      padding: 14px 20px;
+      text-align: left;
+      color: var(--blanco);
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+    }
+
+    tbody td {
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--borde);
+      color: var(--texto);
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) td { background: var(--gris-claro); }
+    tbody tr:hover td { background: #eff6ff; }
+
+    /* ── NOTICIAS ── */
+    #noticias { background: var(--gris-claro); }
+
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .noticia-card {
+      background: var(--blanco);
+      border-radius: 14px;
+      border: 1px solid var(--borde);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .noticia-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sombra);
+    }
+
+    .noticia-top {
+      background: linear-gradient(135deg, var(--azul) 0%, var(--azul-claro) 100%);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .noticia-top span {
+      font-size: 22px;
+    }
+
+    .noticia-fecha {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+    }
+
+    .noticia-body { padding: 1.25rem 1.5rem; }
+
+    .noticia-body h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--azul);
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .noticia-body p {
+      font-size: 13px;
+      color: var(--gris-texto);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--blanco); }
+
+    .contacto-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contacto-info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contacto-item {
+      background: var(--gris-claro);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contacto-icono {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--azul);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .contacto-item-title {
+      font-size: 11px;
+      color: var(--gris-texto);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .contacto-item-val {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--texto);
+    }
+
+    .contacto-form {
+      background: var(--gris-claro);
+      border-radius: 14px;
+      padding: 2rem;
+      border: 1px solid var(--borde);
+    }
+
+    .contacto-form h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--azul);
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gris-texto);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--borde);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--azul-claro);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .btn-form {
+      width: 100%;
+      background: var(--azul);
+      color: var(--blanco);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Sora', sans-serif;
+      transition: background 0.2s;
+      margin-top: 4px;
+    }
+
+    .btn-form:hover { background: var(--azul-medio); }
+
+    /* ── MÓDULOS ── */
+    #modulos { background: var(--azul); padding: 3.5rem 2.5rem; }
+
+    #modulos .section-tag { color: var(--acento); }
+    #modulos .section-title { color: var(--blanco); }
+    #modulos .section-desc { color: rgba(255,255,255,0.65); }
+
+    .modulos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 2rem;
+    }
+
+    .modulo-item {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+
+    .modulo-item:hover { background: rgba(255,255,255,0.12); }
+
+    .modulo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acento);
+      flex-shrink: 0;
+    }
+
+    .modulo-item span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #081a30;
+      color: rgba(255,255,255,0.55);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 13px;
+    }
+
+    .footer-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      color: var(--blanco);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--blanco); }
+
+    /* ── ANIMACIONES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-inner > * {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge { animation-delay: 0.1s; }
+    .hero h1    { animation-delay: 0.2s; }
+    .hero-desc  { animation-delay: 0.3s; }
+    .hero-btns  { animation-delay: 0.4s; }
+    .hero-stats { animation-delay: 0.5s; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 3rem 1.25rem; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .contacto-layout { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">CF</div>
+      <div class="logo-text">
+        Centro Formación Digital
+        <span class="logo-sub">Almería · FP Oficial</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#horarios">Horarios</a></li>
+      <li><a href="#noticias">Noticias</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="nav-cta">Matricularse</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">⭐ Formación Profesional Oficial</div>
+      <h1>Formación profesional<br>de <span>calidad</span> en Almería</h1>
+      <p class="hero-desc">Oferta formativa actualizada en Sistemas, Redes y Desarrollo Web. Accede a información clara, horarios y contacto directo con el centro.</p>
+      <div class="hero-btns">
+        <a href="#cursos" class="btn-primary">Ver cursos disponibles →</a>
+        <a href="#contacto" class="btn-secondary">Contactar con el centro</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">4+</span>
+          <span class="stat-label">Ciclos formativos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Turnos disponibles</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Titulación oficial</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section id="cursos">
+    <div class="section-header">
+      <span class="section-tag">Oferta formativa</span>
+      <h2 class="section-title">Nuestros ciclos y cursos</h2>
+      <p class="section-desc">Formación de grado medio, superior y cursos complementarios adaptados a las necesidades del mercado laboral.</p>
+    </div>
+
+    <div class="filtros">
+      <button class="filtro-btn activo" onclick="filtrar(this, 'todos')">Todos</button>
+      <button class="filtro-btn" onclick="filtrar(this, 'informatica')">Informática</button>
+      <button class="filtro-btn" onclick="filtrar(this, 'administracion')">Administración</button>
+      <button class="filtro-btn" onclick="filtrar(this, 'idiomas')">Idiomas</button>
+    </div>
+
+    <div class="cursos-grid">
+      <div class="curso-card" data-cat="informatica">
+        <div class="curso-icon icon-blue">💻</div>
+        <h3>Sistemas Microinformáticos y Redes</h3>
+        <p>Instalación, configuración y mantenimiento de sistemas informáticos y redes de comunicación.</p>
+        <div class="curso-meta">
+          <span class="tag tag-m">Mañana</span>
+          <span class="tag tag-dur">Grado Medio · 2 años</span>
+        </div>
+      </div>
+
+      <div class="curso-card" data-cat="informatica">
+        <div class="curso-icon icon-purple">🌐</div>
+        <h3>Desarrollo de Aplicaciones Web</h3>
+        <p>Diseño, desarrollo y mantenimiento de aplicaciones web y servicios en internet.</p>
+        <div class="curso-meta">
+          <span class="tag tag-t">Tarde</span>
+          <span class="tag tag-dur">Grado Superior · 2 años</span>
+        </div>
+      </div>
+
+      <div class="curso-card" data-cat="informatica">
+        <div class="curso-icon icon-green">🔒</div>
+        <h3>Ciberseguridad en Entornos de las TI</h3>
+        <p>Especialización en seguridad informática, análisis de vulnerabilidades y protección de sistemas.</p>
+        <div class="curso-meta">
+          <span class="tag tag-n">Noche</span>
+          <span class="tag tag-dur">Grado Superior · 1 año</span>
+        </div>
+      </div>
+
+      <div class="curso-card" data-cat="administracion">
+        <div class="curso-icon icon-amber">📋</div>
+        <h3>Administración y Finanzas</h3>
+        <p>Gestión administrativa, contabilidad y finanzas de empresas e instituciones públicas.</p>
+        <div class="curso-meta">
+          <span class="tag tag-t">Tarde</span>
+          <span class="tag tag-dur">Grado Superior · 2 años</span>
+        </div>
+      </div>
+
+      <div class="curso-card" data-cat="idiomas">
+        <div class="curso-icon icon-blue">🌍</div>
+        <h3>Inglés Técnico</h3>
+        <p>Inglés orientado al ámbito tecnológico y empresarial. Nivel B1-B2 del Marco Europeo.</p>
+        <div class="curso-meta">
+          <span class="tag tag-t">Tarde</span>
+          <span class="tag tag-dur">Complementario · 6 meses</span>
+        </div>
+      </div>
+
+      <div class="curso-card" data-cat="informatica">
+        <div class="curso-icon icon-purple">☁️</div>
+        <h3>Cloud Computing y DevOps</h3>
+        <p>Despliegue y gestión de servicios en la nube, automatización y entornos CI/CD.</p>
+        <div class="curso-meta">
+          <span class="tag tag-m">Mañana</span>
+          <span class="tag tag-dur">Complementario · 3 meses</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section id="horarios">
+    <div class="section-header">
+      <span class="section-tag">Organización</span>
+      <h2 class="section-title">Horarios del centro</h2>
+      <p class="section-desc">Consulta los turnos y aulas asignadas para cada ciclo formativo durante el curso 2024-2025.</p>
+    </div>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ciclo / Curso</th>
+            <th>Turno</th>
+            <th>Horario</th>
+            <th>Aula</th>
+            <th>Nivel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SMR - 1º</strong></td>
+            <td><span class="tag tag-m">Mañana</span></td>
+            <td>08:00 – 14:00</td>
+            <td>A-101</td>
+            <td>Grado Medio</td>
+          </tr>
+          <tr>
+            <td><strong>SMR - 2º</strong></td>
+            <td><span class="tag tag-m">Mañana</span></td>
+            <td>08:00 – 14:00</td>
+            <td>A-102</td>
+            <td>Grado Medio</td>
+          </tr>
+          <tr>
+            <td><strong>DAW - 1º</strong></td>
+            <td><span class="tag tag-t">Tarde</span></td>
+            <td>15:00 – 21:00</td>
+            <td>B-201</td>
+            <td>Grado Superior</td>
+          </tr>
+          <tr>
+            <td><strong>DAW - 2º</strong></td>
+            <td><span class="tag tag-t">Tarde</span></td>
+            <td>15:00 – 21:00</td>
+            <td>B-202</td>
+            <td>Grado Superior</td>
+          </tr>
+          <tr>
+            <td><strong>Administración y Finanzas - 1º</strong></td>
+            <td><span class="tag tag-t">Tarde</span></td>
+            <td>15:00 – 21:00</td>
+            <td>C-301</td>
+            <td>Grado Superior</td>
+          </tr>
+          <tr>
+            <td><strong>Ciberseguridad</strong></td>
+            <td><span class="tag tag-n">Noche</span></td>
+            <td>18:00 – 22:00</td>
+            <td>B-205</td>
+            <td>Grado Superior</td>
+          </tr>
+          <tr>
+            <td><strong>Inglés Técnico</strong></td>
+            <td><span class="tag tag-t">Tarde</span></td>
+            <td>17:00 – 19:00</td>
+            <td>C-105</td>
+            <td>Complementario</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud Computing y DevOps</strong></td>
+            <td><span class="tag tag-m">Mañana</span></td>
+            <td>09:00 – 12:00</td>
+            <td>A-103</td>
+            <td>Complementario</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section id="noticias">
+    <div class="section-header">
+      <span class="section-tag">Actualidad</span>
+      <h2 class="section-title">Últimas noticias</h2>
+      <p class="section-desc">Mantente informado sobre las novedades, eventos y actividades del centro.</p>
+    </div>
+
+    <div class="noticias-grid">
+      <div class="noticia-card">
+        <div class="noticia-top">
+          <span>📋</span>
+          <div>
+            <div style="color:#fff;font-size:13px;font-weight:600;font-family:'Sora',sans-serif;">Matriculación 2025-2026</div>
+            <div class="noticia-fecha">20 de marzo, 2025</div>
+          </div>
+        </div>
+        <div class="noticia-body">
+          <h3>Inicio del período de matriculación</h3>
+          <p>Se abre el plazo de preinscripción para todos los ciclos formativos del próximo curso escolar. Plazas limitadas.</p>
+        </div>
+      </div>
+
+      <div class="noticia-card">
+        <div class="noticia-top">
+          <span>🏫</span>
+          <div>
+            <div style="color:#fff;font-size:13px;font-weight:600;font-family:'Sora',sans-serif;">Puertas abiertas</div>
+            <div class="noticia-fecha">10 de marzo, 2025</div>
+          </div>
+        </div>
+        <div class="noticia-body">
+          <h3>Jornadas de puertas abiertas</h3>
+          <p>El centro abre sus instalaciones para que alumnos y familias conozcan de primera mano los ciclos disponibles.</p>
+        </div>
+      </div>
+
+      <div class="noticia-card">
+        <div class="noticia-top">
+          <span>🔒</span>
+          <div>
+            <div style="color:#fff;font-size:13px;font-weight:600;font-family:'Sora',sans-serif;">Nuevo taller</div>
+            <div class="noticia-fecha">1 de marzo, 2025</div>
+          </div>
+        </div>
+        <div class="noticia-body">
+          <h3>Taller de ciberseguridad práctica</h3>
+          <p>El departamento de informática lanza un taller práctico de seguridad para alumnos de SMR y DAW.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÓDULOS -->
+  <section id="modulos">
+    <div class="section-header">
+      <span class="section-tag">Plan de estudios</span>
+      <h2 class="section-title">Módulos profesionales</h2>
+      <p class="section-desc">Formación integral que abarca las principales áreas de los Sistemas Microinformáticos y Redes.</p>
+    </div>
+
+    <div class="modulos-grid">
+      <div class="modulo-item"><div class="modulo-dot"></div><span>Aplicaciones Web</span></div>
+      <div class="modulo-item"><div class="modulo-dot"></div><span>Sistemas Operativos</span></div>
+      <div class="modulo-item"><div class="modulo-dot"></div><span>Redes Locales</span></div>
+      <div class="modulo-item"><div class="modulo-dot"></div><span>Servicios en Red</span></div>
+      <div class="modulo-item"><div class="modulo-dot"></div><span>Seguridad Informática</span></div>
+      <div class="modulo-item"><div class="modulo-dot"></div><span>Formación en Centros de Trabajo</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-header">
+      <span class="section-tag">Contacto</span>
+      <h2 class="section-title">Estamos para ayudarte</h2>
+      <p class="section-desc">Consulta cualquier duda sobre matriculación, cursos o actividades del centro.</p>
+    </div>
+
+    <div class="contacto-layout">
+      <div class="contacto-info">
+        <div class="contacto-item">
+          <div class="contacto-icono">📍</div>
+          <div>
+            <div class="contacto-item-title">Dirección</div>
+            <div class="contacto-item-val">C/ Ejemplo 12, 04001 Almería</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icono">📞</div>
+          <div>
+            <div class="contacto-item-title">Teléfono</div>
+            <div class="contacto-item-val">950 000 000</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icono">✉️</div>
+          <div>
+            <div class="contacto-item-title">Email</div>
+            <div class="contacto-item-val">info@centroformacion.es</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icono">🕐</div>
+          <div>
+            <div class="contacto-item-title">Secretaría</div>
+            <div class="contacto-item-val">Lunes a Viernes, 9:00 – 14:00 h</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contacto-form">
+        <h3>Envíanos un mensaje</h3>
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tu nombre y apellidos">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tucorreo@ejemplo.com">
+        </div>
+        <div class="form-group">
+          <label>Asunto</label>
+          <select>
+            <option>Información sobre matriculación</option>
+            <option>Consulta sobre cursos</option>
+            <option>Horarios y aulas</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea placeholder="Escribe tu consulta aquí..."></textarea>
+        </div>
+        <button class="btn-form">Enviar mensaje</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">Centro de Formación Digital</div>
+      <div style="margin-top:4px;">© 2025 · Todos los derechos reservados</div>
+    </div>
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#horarios">Horarios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div>Muhammad Dawood Umar &amp; Plácido Torres Torres</div>
+  </footer>
+
+  <script>
+    function filtrar(btn, cat) {
+      document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      document.querySelectorAll('.curso-card').forEach(card => {
+        if (cat === 'todos' || card.dataset.cat === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
